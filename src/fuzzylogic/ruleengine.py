@@ -37,7 +37,7 @@ class MamdaniRuleEngine(RuleEngine):
 
     def _defuzz(self):
         domain = self.rules[0].q.universe.domain
-        self.crisp = np.sum(self.agg * domain)/np.sum(self.agg)
+        self.crisp = np.sum(self.agg * domain)/(np.sum(self.agg) + 1e-9)
 
     def __aggregate(self):
         self.agg = np.max([activation for activation in self.activations.values()], axis=0)
