@@ -2,7 +2,7 @@ import unittest
 import numpy as np
 
 from fuzzylogic.ruleengine import TSKRuleEngine, MamdaniRuleEngine
-from fuzzylogic.functions import trimf
+from fuzzylogic.memfunc import trimf
 from fuzzylogic.structs import Universe, LinguisticVariable, Rule
 from fuzzylogic.config import Config
 from fuzzylogic import operators

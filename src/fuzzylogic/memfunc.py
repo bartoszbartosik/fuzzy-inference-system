@@ -33,3 +33,17 @@ def trapmf(abcd, inverse=False):
     y_3 = lambda x: (d - x + 1e-10) / (d - c + 1e-10)
     y_4 = lambda x: np.zeros_like(x)
     return lambda x: np.max([np.min([y_1(x), y_2(x), y_3(x)], axis=0), y_4(x)], axis=0)
+
+
+def gaussmf(ab, inverse=False):
+    assert len(ab) == 2, 'ab must have 2 elements'
+    a, b = ab
+
+    if inverse:
+        y_1 = lambda x: -np.exp(-0.5 * ((x - a) / (b + 1e-10))**2) + 1
+        y_2 = lambda x: np.ones_like(x)
+        return lambda x: np.min([y_1(x), y_2(x)], axis=0)
+
+    y_1 = lambda x: np.exp(-0.5 * ((x - a) / (b + 1e-10))**2)
+    y_2 = lambda x: np.zeros_like(x)
+    return lambda x: np.max([y_1(x), y_2(x)], axis=0)
